@@ -1,26 +1,39 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Image } from 'react-native';
-import paris from "./assets/paris.png";
+import React, { useState, useRef } from 'react';
+import MapView, { Marker } from 'react-native-maps';
+import { View, Button, StyleSheet } from 'react-native';
 
+const App = () => {
+  const mapRef = useRef(null);
+  const [region, setRegion] = useState({
+    latitude: 48.856614,
+    longitude: 2.352222,
+    latitudeDelta: 0.1,
+    longitudeDelta: 0.1,
+  });
 
-export default function App() {
+  const onZoomToParis = () => {
+    mapRef.current.animateToRegion({
+      ...region,
+      latitudeDelta: 0.05,
+      longitudeDelta: 0.05,
+    }, 1000);
+  };
+
   return (
     <View style={styles.container}>
-      <Text>Sous le ciel Paris!</Text>
-      <Image
-        source={paris}
-        style={{
-          width: 200,
-          height: 200,
-          marginTop: 20,
-          marginBottom: 200,
-          alignSelf: "center",
-        }}
-      />
-      <StatusBar style="auto" />
+      <MapView
+        ref={mapRef}
+        region={region}
+        style={styles.map}
+      >
+        <Marker coordinate={region} />
+      </MapView>
+      <View style={styles.buttonContainer}>
+        <Button title="Zoom to Paris" onPress={onZoomToParis} />
+      </View>
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -29,4 +42,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  map: {
+    width: '100%',
+    height: '80%',
+  },
+  buttonContainer: {
+    position: 'absolute',
+    bottom: 20,
+    right: 20,
+  },
 });
+
+export default App;
