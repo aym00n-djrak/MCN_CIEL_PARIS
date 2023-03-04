@@ -44,6 +44,9 @@ export default function Map() {
   const destinationsRef = collection(db, "destinations");
   const [destinations, setDestinations] = useState([]);
 
+  Geocoder.init("AIzaSyCbZzW2ahika3m40ChIWqtd89nujDX-nqA");
+
+
   const getDestinations = () => {
     const destinationsRef = collection(db, "destinations");
     onSnapshot(destinationsRef, (snapshot) => {
