@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Voici notre application mobile
+MCN Paris est une application mobile qui a pour objectif de faire découvrir Paris aux touristes. La ville lumière regorge d'endroits incontournables mais également d'endroits méconnus du grand public. Notre application permettra ainsi de faire découvrir aux utilisateurs les lieux les plus emblématiques de Paris, mais également des lieux moins connus pour une découverte plus authentique de la ville.
 
 ## Instructions pour installation
 
